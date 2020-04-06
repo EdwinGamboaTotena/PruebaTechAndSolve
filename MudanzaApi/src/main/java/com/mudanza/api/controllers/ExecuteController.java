@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.management.InvalidAttributeValueException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +61,7 @@ public class ExecuteController {
 				response.put("errors", NO_RECORDS_FOUND);
 				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
 			}
-		} catch (DataAccessException e) {
+		} catch (DataAccessException | InvalidAttributeValueException e) {
 			response.put("errors", e);
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -76,7 +77,7 @@ public class ExecuteController {
 			response.put("execute", executeSave);
 			response.put("output", output);
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
-		} catch (DataAccessException e) {
+		} catch (DataAccessException|InvalidAttributeValueException e) {
 			response.put("errors", e);
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}

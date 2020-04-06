@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -29,6 +30,7 @@ public class Execute implements Serializable {
 	private Long id;
 
 	@NotEmpty
+	@Size(min = 5)
 	private String document;
 
 	@Temporal(TemporalType.DATE)
@@ -44,17 +46,29 @@ public class Execute implements Serializable {
 	public void prePersist() {
 		this.createAt = new Date();
 	}
-	
+
 	public Long getId() {
 		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	public String getDocument() {
 		return document;
 	}
-	
+
+	public void setDocument(String document) {
+		this.document = document;
+	}
+
 	public String getInput() {
 		return input;
 	}
-	
+
+	public void setInput(String input) {
+		this.input = input;
+	}
+
 }
