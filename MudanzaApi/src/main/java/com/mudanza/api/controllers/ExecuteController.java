@@ -46,7 +46,7 @@ public class ExecuteController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> calcularOutpu(@PathVariable Long id) {
+	public ResponseEntity<?> calcularOutput(@PathVariable Long id) {
 		Map<String, Object> response = new HashMap<>();
 		try {
 			Execute execute = executeService.findById(id);
@@ -71,8 +71,8 @@ public class ExecuteController {
 	public ResponseEntity<?> save(@Valid @RequestBody Execute execute) {
 		Map<String, Object> response = new HashMap<>();
 		try {
+			String output = executeService.calculateOutput(execute);
 			Execute executeSave = executeService.save(execute);
-			String output = executeService.calculateOutput(executeSave);
 			response.put("execute", executeSave);
 			response.put("output", output);
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);

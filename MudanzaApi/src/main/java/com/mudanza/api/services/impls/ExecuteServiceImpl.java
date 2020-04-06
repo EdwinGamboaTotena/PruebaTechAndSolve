@@ -46,11 +46,11 @@ public class ExecuteServiceImpl implements IExecuteService {
 		List<List<Integer>> lstWeightPerDay = generateArrayPerDay(execute.getInput());
 		int numTravel = 0;
 		int numCase = 1;
-		
+
 		for (List<Integer> weightDay : lstWeightPerDay) {
 			numTravel = calculateMaxTravelPerDay(weightDay);
 			output += "Case #" + numCase + ": " + numTravel + "\n";
-			numCase ++;
+			numCase++;
 		}
 
 		return output;
@@ -58,13 +58,12 @@ public class ExecuteServiceImpl implements IExecuteService {
 
 	private List<List<Integer>> generateArrayPerDay(String input) {
 		List<List<Integer>> lstWeightPerDay = new ArrayList<List<Integer>>();
-		List<Integer> lstInput = new ArrayList<Integer>();
-		lstInput.addAll(Arrays.asList(input.split("\n")).stream().map(Integer::valueOf).collect(Collectors.toList()));
+		List<Integer> lstInput = Arrays.stream(input.split("\n")).map(Integer::valueOf).collect(Collectors.toList());
 
 		int days = lstInput.get(0);
 		int numObjects = lstInput.get(1);
 		int firstObject = 2;
-		List<Integer> weightDay = new ArrayList<Integer>();
+		List<Integer> weightDay;
 
 		while (days != 0) {
 			weightDay = lstInput.subList(firstObject, (firstObject + numObjects));
@@ -88,9 +87,7 @@ public class ExecuteServiceImpl implements IExecuteService {
 		int finalElementPosition = weightDay.size() - 1;
 		int weightMax = weightDay.get(finalElementPosition);
 
-		if (weightDay.size() == 0) {
-			return 0;
-		} else if (weightDay.get(0) >= MIN_WEIGHT) {
+		if (weightDay.get(0) >= MIN_WEIGHT) {
 			return weightDay.size();
 		} else {
 			weightDay.remove(finalElementPosition);

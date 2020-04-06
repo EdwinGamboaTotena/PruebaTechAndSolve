@@ -1,22 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { Execute } from '../../../models/Execute';
-import { MudanzaService } from '../../../services/mudanza.service';
-import { SweetAlertsService } from '../../../services/sweet-alerts.service';
-import { ErroresService } from '../../../services/errores.service';
+import { ErroresService } from 'src/app/shared/services/errores.service';
+import { SweetAlertsService } from 'src/app/shared/services/sweet-alerts.service';
+import { MudanzaService } from 'src/app/shared/services/mudanza.service';
+import { Execute } from 'src/app/shared/models/Execute';
 
 @Component({
   selector: 'app-records',
   templateUrl: './records.component.html',
-  styles: []
+  styles: [],
 })
 export class RecordsComponent implements OnInit {
-
   lstExecutions: Execute[];
   constructor(
     private erroresService: ErroresService,
-    private sweet: SweetAlertsService,
+    private sweetAlertsService: SweetAlertsService,
     private mudanzaService: MudanzaService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.lstExecutions = [];
@@ -25,11 +24,13 @@ export class RecordsComponent implements OnInit {
 
   findExecutions() {
     this.mudanzaService.findAll().subscribe(
-      data => {
+      (data) => {
         this.lstExecutions = data;
-      }, error => {
+      },
+      (error) => {
         this.erroresService.erroresHttp(error);
-      });
+      }
+    );
   }
 
   showInput(input: string) {
@@ -37,17 +38,18 @@ export class RecordsComponent implements OnInit {
     <textarea rows="5" cols="50">
     ${input}
     </textarea>`;
-    this.sweet.popUpHtml('Entrada: ', mensaje, 'info');
+    this.sweetAlertsService.popUpHtml('Entrada: ', mensaje, 'info');
   }
-
 
   generateOutput(id: number) {
     this.mudanzaService.calculateOutput(id).subscribe(
-      response => {
+      (response) => {
         this.dowloadOutput(response.output, response.execute.id);
-      }, error => {
+      },
+      (error) => {
         this.erroresService.erroresHttp(error);
-      });
+      }
+    );
   }
 
   dowloadOutput(output: string, id: number) {
@@ -62,5 +64,4 @@ export class RecordsComponent implements OnInit {
 
     document.body.removeChild(element);
   }
-
 }

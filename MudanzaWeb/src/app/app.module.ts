@@ -4,9 +4,9 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoaderInterceptorService } from './services/loader-interceptor.service';
 import { CoreModule } from './core/core.module';
 import { MudanzaModule } from './feature/mudanza/mudanza.module';
+import { LoaderInterceptorService } from './core/loader/shared/services/loader-interceptor.service';
 
 @NgModule({
   declarations: [

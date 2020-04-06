@@ -1,36 +1,36 @@
 <div class="container text-center">
-    <div *ngIf="lstExecutions.length === 0">
-        <h2 class="text-center">No hay registros</h2>
-        <a class="btn btn-success" routerLink="/ejecucion"><i class="fas fa-plus mr-1"></i> Ingrese una ejecución</a>
-    </div>
-    <div *ngIf="lstExecutions.length > 0">
-        <h2 class="text-center">Registros de las Ejecuciones</h2>
-        <a class="btn btn-success" routerLink="/ejecucion"><i class="fas fa-plus mr-1"></i> Agregar Ejecución</a>
-        <hr />
-        <table class="table table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th class="text-center">ID</th>
-                    <th class="text-center">Documento</th>
-                    <th class="text-center">Fecha Ejecución</th>
-                    <th class="text-center">Entrada</th>
-                    <th class="text-center">Salida</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let execute of lstExecutions">
-                    <td class="text-center align-middle">{{execute.id}}</td>
-                    <td class="text-center align-middle">{{execute.document}}</td>
-                    <td class="text-center align-middle">{{execute.createAt | date: 'dd-MM-yyyy'}}</td>
-                    <td class="align-middle">
-                        <button class="btn btn-info" (click)="showInput(execute.input)">
-                            <i class="fas fa-eye mr-1"></i> Ver</button></td>
-                    <td>
-                        <button class="btn btn-info" (click)="generateOutput(execute.id)">
-                            <i class="fas fa-file-download mr-1"></i> Descargar</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+  <div *ngIf="lstExecutions.length === 0">
+    <h2 class="text-center">No hay registros</h2>
+    <a class="btn btn-success" routerLink="/ejecucion"><i class="fas fa-plus mr-1"></i> Ingrese una ejecución</a>
+  </div>
+  <div *ngIf="lstExecutions.length > 0">
+    <h2 class="text-center">Registros de las Ejecuciones</h2>
+    <a class="btn btn-success" routerLink="/ejecucion"><i class="fas fa-plus mr-1"></i> Agregar Ejecución</a>
+    <hr />
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th class="text-center">ID</th>
+          <th class="text-center">Documento</th>
+          <th class="text-center">Fecha Ejecución</th>
+          <th class="text-center">Entrada</th>
+          <th class="text-center">Salida</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let execute of lstExecutions">
+          <td class="text-center align-middle">{{execute.id}}</td>
+          <td class="text-center align-middle">{{execute.document}}</td>
+          <td class="text-center align-middle">{{execute.createAt | date: 'dd-MM-yyyy'}}</td>
+          <td class="align-middle">
+            <button class="btn btn-info" (click)="showInput(execute.input)">
+              <i class="fas fa-eye mr-1"></i> Ver</button></td>
+          <td>
+            <button class="btn btn-info" (click)="generateOutput(execute.id)">
+              <i class="fas fa-file-download mr-1"></i> Descargar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

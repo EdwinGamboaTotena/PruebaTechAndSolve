@@ -4,4 +4,8 @@
     width: 100%;
     text-align: center;
     color: white;
+    height: 50px;
+    position: fixed;
+    left: 0;
+    right: 0
 }
