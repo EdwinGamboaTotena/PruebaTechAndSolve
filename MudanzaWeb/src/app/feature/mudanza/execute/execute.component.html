@@ -1,0 +1,28 @@
+<div class="container">
+    <h2 class="text-center">Nueva Ejecución</h2>
+    <hr />
+    <form #ngForm="ngForm" [formGroup]="formExecute" (ngSubmit)="registrerExecution()">
+        <div class="form-group row col col-sm-12"
+            [ngClass]="{'has-danger': erroresService.errores(formExecute, 'document', ngForm).hayErrores}">
+            <label class="col-form-label col-lg-3">Documento <span class="has-danger">*</span></label>
+            <input type="text" class="col form-control col-lg-9" formControlName="document">
+            <div class="form-control-feedback col-sm-12"
+                *ngIf="erroresService.errores(formExecute, 'document', ngForm).hayErrores">
+                El número de documento debe tener más de 5 dígitos.
+            </div>
+        </div>
+
+        <div class="form-group row col col-sm-12"
+            [ngClass]="{'has-danger': erroresService.errores(formExecute, 'input', ngForm).hayErrores}">
+            <label class="col-form-label col-lg-3">Entrada <span class="has-danger">*</span></label>
+            <input type="file" (change)="readInput($event)" class="col form-control-file col-lg-9" formControlName="input">
+            <div class="form-control-feedback col-sm-12"
+                *ngIf="erroresService.errores(formExecute, 'input', ngForm).hayErrores">
+                Debe seleccionar un tipo de archivo valido (txt).
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-success"><i class="far fa-play-circle mr-1"></i> Ejecutar</button>
+        </div>
+    </form>
+</div>
