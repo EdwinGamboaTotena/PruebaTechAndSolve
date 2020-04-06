@@ -54,6 +54,7 @@ export class ExecuteComponent implements OnInit {
         this.dowloadOutput(response.output, response.execute.id);
         this.router.navigate(['/dashboard']);
       }, error => {
+        console.log(error);
         this.erroresService.erroresHttp(error);
       });
     } else {

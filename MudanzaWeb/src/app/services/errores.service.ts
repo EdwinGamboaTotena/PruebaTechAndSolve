@@ -21,6 +21,8 @@ export class ErroresService {
   erroresHttp(error: any) {
     if (error.status === 0) {
       this.sweet.popUp('Oops...', 'Parece que no tenemos conexión con el servidor, intentalo más tarde', 'error');
+    } else if (error.status === 500) {
+      this.sweet.popUp('Oops...', 'Asegúrese de que el archivo de entrada sea valido', 'error');
     } else {
       this.sweet.popUp('Oops...', error.error.errors, 'error');
     }
